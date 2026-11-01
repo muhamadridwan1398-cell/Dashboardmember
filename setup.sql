@@ -36,7 +36,10 @@ end $$;
 revoke all on function public.set_fu(text,text,jsonb) from public, anon;
 grant execute on function public.set_fu(text,text,jsonb) to authenticated;
 
--- 5. Row Level Security: hanya anggota tim yang bisa membaca
+-- 5. Izin dasar + Row Level Security: hanya anggota tim yang bisa membaca
+grant usage on schema public to authenticated;
+grant select on public.tim, public.fu to authenticated;
+grant execute on function public.peran() to authenticated;
 alter table public.tim enable row level security;
 alter table public.fu  enable row level security;
 drop policy if exists tim_baca on public.tim;
