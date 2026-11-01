@@ -46,6 +46,6 @@ Untuk mengubah peran atau mencabut akses, edit atau hapus barisnya di tabel `tim
 Editor klik **⬆ Upload data** lalu pilih file Excel QBig (format sama seperti sebelumnya: sheet data member, *By Item*, *Day*). Status follow-up tidak hilang saat data diganti.
 
 ## Link rahasia (lihat tanpa login)
-Orang yang membuka `https://muhamadridwan1398-cell.github.io/Dashboardmember/#v=PASSWORD_VIEWER` langsung masuk dan bisa mencentang follow-up (nama sales ditanyakan sekali saat pertama mencentang). Upload data tetap hanya untuk editor.
-- Akun bersamanya: `viewer.dashboard@example.com` (peran `contributor` di tabel `tim`).
+Orang yang membuka `https://muhamadridwan1398-cell.github.io/Dashboardmember/#v=PASSWORD_VIEWER` langsung masuk dan bisa mencentang follow-up (nama sales ditanyakan sekali saat pertama mencentang). Pemegang link juga bisa upload data (nama tercatat di Riwayat update).
+- Akun bersamanya: `viewer.dashboard@example.com` (peran `editor` di tabel `tim`).
 - **Mengganti link** (kalau bocor): Supabase → Authentication → Users → hapus `viewer.dashboard@example.com`, lalu buat lagi dengan password baru. Link lama berhenti berfungsi paling lama 1 jam kemudian.
