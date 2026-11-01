@@ -1,6 +1,6 @@
-// Isi dengan data dari Supabase: Project Settings → API
-// Anon key AMAN ditaruh di repo publik; data tetap dilindungi login + Row Level Security.
+// Konfigurasi Supabase (Project Settings → API Keys)
+// Publishable key AMAN ditaruh di repo publik; data tetap dilindungi login + Row Level Security.
 window.CFG = {
-  SUPABASE_URL: "",       // contoh: "https://abcdxyz.supabase.co"
-  SUPABASE_ANON_KEY: ""   // contoh: "eyJhbGciOi..."
+  SUPABASE_URL: "https://louifihhhvmzbphpxmvv.supabase.co",
+  SUPABASE_ANON_KEY: "sb_publishable_Ab2CORdFHG4yIz1LkjPUxw_Jtv06HBr"
 };
