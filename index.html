@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Dashboard Control Member Mitra10</title><style id="sty">
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f5f6f8;--card:#fff;--tx:#1b1f27;--mu:#6b7380;--bd:#e3e6eb;--ac:#d9262c;--ac2:#1f6feb;--wa:#1faa59}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171c;--card:#1d2128;--tx:#e8eaee;--mu:#98a1ae;--bd:#2c323b;--ac:#ff5a5f;--ac2:#5b9dff}}
+:root[data-theme="dark"]{--bg:#14171c;--card:#1d2128;--tx:#e8eaee;--mu:#98a1ae;--bd:#2c323b;--ac:#ff5a5f;--ac2:#5b9dff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+header{padding:16px 20px 4px}h1{margin:0;font-size:20px}header p{margin:2px 0 0;color:var(--mu);font-size:12.5px}
+main{padding:12px 20px 28px;max-width:1280px;margin:auto}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:12px}
+.k{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px 14px}
+.k b{display:block;font-size:20px;margin-top:2px}.k span{color:var(--mu);font-size:12px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+input,select,button{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:7px 10px}
+input{flex:1;min-width:200px}button{cursor:pointer}button:disabled{opacity:.4;cursor:default}
+.tw{background:var(--card);border:1px solid var(--bd);border-radius:10px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:900px}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--bd);white-space:nowrap}
+th{font-size:12px;color:var(--mu);cursor:pointer;user-select:none;position:sticky;top:0;background:var(--card)}
+td.n,th.n{text-align:right}tbody tr{cursor:pointer}tbody tr:hover{background:color-mix(in srgb,var(--ac2) 8%,transparent)}
+.mn{color:var(--ac2);font-weight:600;text-decoration:underline}
+a.wa{color:var(--wa);font-weight:600;text-decoration:none}a.wa:hover{text-decoration:underline}
+.tag{padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600}.p1{background:color-mix(in srgb,var(--ac) 15%,transparent);color:var(--ac)}.p0{background:var(--bd);color:var(--mu)}
+.pg{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:10px;color:var(--mu);font-size:13px}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:flex-start;justify-content:center;overflow:auto;padding:20px;z-index:20}
+#ov.on{display:flex}
+.md{background:var(--bg);border-radius:12px;width:100%;max-width:880px;padding:18px;border:1px solid var(--bd)}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.hd h2{margin:0;font-size:18px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin:12px 0}
+.g div{background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px 12px}.g small{display:block;color:var(--mu);font-size:11.5px}
+.cd{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;margin-top:10px}.cd h3{margin:0 0 8px;font-size:14px}
+.hb{display:grid;grid-template-columns:170px 1fr 110px;gap:8px;align-items:center;margin:4px 0;font-size:12.5px}
+.hb i{display:block;height:10px;border-radius:5px;background:var(--ac2)}.hb em{font-style:normal;text-align:right}
+.vc{display:flex;gap:6px;align-items:flex-end;height:130px}.vc div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-size:11px}
+.vc i{display:block;width:100%;border-radius:4px 4px 0 0;background:var(--ac);min-height:1px}.vc span{color:var(--mu)}
+.w2{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:700px){.w2{grid-template-columns:1fr}.hb{grid-template-columns:110px 1fr 90px}}
+.fu{padding:3px 10px;border-radius:99px;font-size:12px;font-weight:600}.fu.on{background:var(--wa);color:#fff;border-color:var(--wa)}.fu:disabled{opacity:1;cursor:default}
+@media(max-width:700px){main{padding:10px}table{min-width:0}thead{display:none}tr{display:block;padding:6px 0;border-bottom:8px solid var(--bg)}td{display:flex;justify-content:space-between;gap:12px;white-space:normal;border:0;padding:3px 12px;text-align:right}td::before{content:attr(data-label);color:var(--mu);font-size:12px;text-align:left}.md{padding:12px}}
+[hidden]{display:none!important}
+.act{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;margin-top:4px}.act>div:first-child{display:flex;flex-direction:column;gap:8px;align-items:flex-start}.tp{flex:1;min-width:280px;margin-top:0}.ti{display:grid;grid-template-columns:20px 1fr auto;gap:8px;font-size:12.5px;padding:5px 0;border-top:1px solid var(--bd)}.ti small{color:var(--mu)}.ti em{font-style:normal;text-align:right}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}.chip{border-radius:99px;padding:5px 12px;font-size:13px}.chip.on{background:var(--ac2);color:#fff;border-color:var(--ac2)}
+.sm{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}@media(max-width:800px){.sm{grid-template-columns:1fr}}.sm .cd{margin:0}.sm .wide{grid-column:1/-1}
+.pb{height:8px;border-radius:5px;background:var(--bd);overflow:hidden}.pb i{display:block;height:100%;background:var(--wa)}
+.pr{display:grid;grid-template-columns:130px 1fr 130px;gap:8px;align-items:center;margin:6px 0;font-size:12.5px}.pr em{font-style:normal;text-align:right}
+.zb{cursor:pointer;border-radius:6px}.zb:hover{background:color-mix(in srgb,var(--ac2) 10%,transparent)}.zb.on{outline:2px solid var(--ac2)}
+.nt{background:color-mix(in srgb,var(--ac) 12%,transparent);border:1px solid var(--bd);border-radius:8px;padding:6px 10px;margin-bottom:10px;font-size:12.5px}
+.rk{min-width:0}.rk td,.rk th{padding:6px 10px}.rk small{color:var(--mu)}
+tbody tr:nth-child(even){background:color-mix(in srgb,var(--tx) 3%,transparent)}.k b{font-size:22px}
+.wb{display:inline-block;background:var(--wa);color:#fff;padding:7px 14px;border-radius:8px;text-decoration:none;font-weight:600}
+
+[hidden]{display:none!important}
+#gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
+#gate .box{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:22px;width:100%;max-width:380px}
+#gate h1{font-size:18px;margin:0 0 4px}#gate p{color:var(--mu);margin:0 0 14px;font-size:13px}
+#gate form{display:grid;gap:8px}#gate input{min-width:0}#gate button[type=submit]{background:var(--ac);color:#fff;border:0;font-weight:600;padding:9px}
+#gm{margin-top:12px;font-size:13px;color:var(--tx);min-height:1em}
+#who{float:right;font-size:12px;color:var(--mu)}#who a{color:var(--ac2)}
+</style></head><body><div id="gate"><div class="box"><h1>Dashboard Control Member Mitra10</h1><p>Masuk dengan akun tim untuk melihat data.</p><form id="lf" hidden><input id="le" type="email" placeholder="Email" autocomplete="username" required><input id="lp" type="password" placeholder="Password" autocomplete="current-password" required><button id="lb" type="submit">Masuk</button></form><div id="gm">Memuat…</div><button id="lo2" hidden style="margin-top:10px">Keluar &amp; ganti akun</button></div></div><div id="root" hidden>
+<header><span id="who"></span><h1>Dashboard Control Member Mitra10</h1><p id="lu"></p></header>
+<main>
+<div class="kpis" id="kp"></div>
+<div class="nt" id="nt" hidden></div>
+<div class="chips" id="ch"></div>
+<div class="sm" id="sm"></div>
+<div class="bar"><input id="q" placeholder="Cari No Member / nama / no HP…"><select id="fp"></select><select id="fz"></select><select id="fk"><option value="">Semua Ket Pareto</option><option value="1">Pareto</option><option value="0">No</option></select><select id="fs"><option value="">Semua Status Follow-up</option><option value="0">Belum difollowup</option><option value="1">Sudah difollowup</option></select><button id="up">⬆ Upload data</button><input type="file" id="fi" accept=".xlsx,.json,.gz" hidden=""></div>
+<div class="tw"><table><thead><tr id="th"></tr></thead><tbody id="tb"></tbody></table></div>
+<div class="pg"><span id="inf"></span><span><button id="pv">‹ Prev</button> <button id="nx">Next ›</button></span></div>
+</main>
+<div id="ov"><div class="md" id="md"></div></div>
+</div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script>
+function boot(D){const CAT=D.c;const BLN=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+const R=D.r,S=D.s,$=id=>document.getElementById(id);
+const N=new Intl.NumberFormat("id-ID"),rp=v=>"Rp "+N.format(Math.round(v));
+const cp=v=>{const a=Math.abs(v);return a>=1e9?(v/1e9).toFixed(2).replace(".",",")+" M":a>=1e6?(v/1e6).toFixed(1).replace(".",",")+" jt":N.format(Math.round(v))};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pic=r=>r[5]<0?["–","Belum ada PIC"]:S[r[5]];
+const wa=p=>{p=String(p).replace(/\D/g,"");if(p[0]==="0")p="62"+p.slice(1);else if(p.slice(0,2)!=="62")p="62"+p;return "https://wa.me/"+p};
+const COLS=[["PIC Salper ID",r=>pic(r)[0],0],["PIC Salper Name",r=>pic(r)[1],0],["No Member",r=>r[0],0],["Nama Customer",r=>r[1],0],["No WA",r=>r[2],0],["Sales YTD",r=>r[3],1],["Ket Pareto",r=>r[4],0],["Follow-up",r=>fd(r)?1:0,0]];
+let sk=5,sd=-1,pg=0,F=R,BASE=R,CHS=[],RS="pb",SHALL=false;const PS=50;let FU={},uid=ME.email,canW=ROLE==="editor"||ROLE==="contributor",cur=null,wq=Promise.resolve();R.forEach((r,i)=>r[10]=i);const bk=n=>"b"+(Number(String(n).slice(-5))%100);const fd=r=>FU["m"+r[0]]?.s===1;
+$("th").innerHTML=COLS.map((c,i)=>`<th class="${c[2]?"n":""}" data-i="${i}">${c[0]}</th>`).join("");
+$("fp").innerHTML='<option value="">Semua PIC Salper</option><option value="-2">Belum ada PIC</option>'+S.map((s,i)=>`<option value="${i}">${esc(s[1])} (${s[0].split("-")[1]})</option>`).join("");
+const zs=[...new Set(R.map(r=>r[6]))].sort();$("fz").innerHTML='<option value="">Semua Zone</option>'+zs.map(z=>`<option>${z}</option>`).join("");
+function filt(){const q=$("q").value.trim().toLowerCase(),p=$("fp").value,z=$("fz").value,k=$("fk").value,s=$("fs").value;
+const pass=(r,sp)=>(!q||r[0].includes(q)||r[1].toLowerCase().includes(q)||r[2].includes(q))&&(sp||p===""||(p==="-2"?r[5]<0:r[5]==p))&&(z===""||r[6]==z)&&(k===""||r[4]==k)&&(s===""||(s==="1")===fd(r));BASE=R.filter(r=>pass(r,1));F=p===""?BASE:BASE.filter(r=>pass(r,0));
+const c=COLS[sk][1];F.sort((a,b)=>{const x=c(a),y=c(b);return (x>y?1:x<y?-1:0)*sd});pg=0;draw();summary()}
+function draw(){const t=F.length,m=Math.max(0,Math.ceil(t/PS)-1);pg=Math.min(pg,m);
+$("tb").innerHTML=F.slice(pg*PS,pg*PS+PS).map(r=>{const p=pic(r),d=fd(r);return `<tr data-i="${r[10]}"><td data-label="PIC Salper ID">${p[0]}</td><td data-label="PIC Salper Name">${esc(p[1])}</td><td class="mn" data-label="No Member">${r[0]}</td><td data-label="Nama Customer">${esc(r[1])}</td><td data-label="No WA"><a class="wa" target="_blank" rel="noopener" href="${wa(r[2])}">${r[2]}</a></td><td class="n" data-label="Sales YTD">${rp(r[3])}</td><td data-label="Ket Pareto"><span class="tag p${r[4]}">${r[4]?"Pareto":"No"}</span></td><td data-label="Follow-up"><button class="fu ${d?"on":""}" data-m="${r[10]}" ${canW?"":'disabled title="Perlu akses Contributor/Editor untuk mengubah status"'}>${d?"✓ Sudah":"Belum"}</button></td></tr>`}).join("");
+$("inf").textContent=`${N.format(t)} member · halaman ${pg+1}/${m+1}`;$("pv").disabled=pg==0;$("nx").disabled=pg>=m;
+const sum=F.reduce((a,r)=>a+r[3],0),pa=F.filter(r=>r[4]).length,wp=F.filter(r=>r[5]>=0).length,dn=F.filter(fd).length;
+$("kp").innerHTML=[["Member (filter)",N.format(t)],["Sales YTD","Rp "+cp(sum)],["Member Pareto",N.format(pa)],["Sudah difollowup",N.format(dn)+" ("+(t?Math.round(dn/t*100):0)+"%)"],["Sudah ada PIC",N.format(wp)+" ("+(t?Math.round(wp/t*100):0)+"%)"]].map(x=>`<div class="k"><span>${x[0]}</span><b>${x[1]}</b></div>`).join("")}
+function top5(r){const e=(D.t||[])[r[10]]||[];const h='<div class="cd tp"><h3>5 Item Pareto (nilai belanja terbesar)</h3>';
+if(!e.length)return h+'<span style="color:var(--mu)">Belum ada data item untuk member ini.</span></div>';
+return h+e.map((x,k)=>{const it=D.i[x[0]]||["",""],sh=r[3]>0?Math.round(x[2]/r[3]*100):0;return `<div class="ti"><span>${k+1}</span><span>${esc(it[1])}<br><small>${esc(it[0])} \u00b7 qty ${N.format(x[1])}</small></span><em>${rp(x[2])}<br><small>${sh}% sales</small></em></div>`}).join("")+'</div>'}
+function fn5(r){const e=(D.g||[])[r[10]]||[],h='<div class="cd"><h3>5 Pareto by Function</h3>';if(!e.length)return h+'<span style="color:var(--mu)">Belum ada data function.</span></div>';
+const mx=Math.max(e[0][1],1);return h+e.map((x,k)=>`<div class="hb"><span>${k+1}. ${esc((D.f||[])[x[0]]||"-")}</span><div><i style="width:${Math.max(0,x[1])/mx*100}%"></i></div><em>${cp(x[1])}</em></div>`).join("")+'</div>'}
+function lastBuy(r){const w=(D.w||[])[r[10]]||[],d=w[11];if(!d)return "–";const y=Math.floor(d/10000),m=Math.floor(d/100)%100,dd=d%100,n=Math.max(0,Math.round((Date.now()-new Date(y,m-1,dd))/864e5));return `${dd} ${BLN[m-1]} ${y} <small style="display:inline;color:var(--mu)">(${N.format(n)} hari lalu)</small>`}
+function habit(r){const w=(D.w||[])[r[10]]||[],h='<div class="cd"><h3>Kebiasaan belanja: Weekday vs Weekend</h3>';if(!w.length)return h+'<span style="color:var(--mu)">Belum ada data hari belanja.</span></div>';
+const wd=w[0],we=w[1],td=wd+we,sd=w[2],se=w[3],ts=sd+se,pc=(a,b)=>b>0?Math.round(a/b*100):0,DY=["Sen","Sel","Rab","Kam","Jum","Sab","Min"],dm=Math.max(...w.slice(4,11),1),lb=we>wd?"Lebih sering belanja di Weekend":wd>we?"Lebih sering belanja di Weekday":"Weekday dan Weekend seimbang";
+return h+`<div style="font-size:17px;font-weight:700">${lb}</div><div style="color:var(--mu);font-size:12.5px;margin-bottom:6px">${td} hari belanja: ${wd} weekday (${pc(wd,td)}%) · ${we} weekend (${pc(we,td)}%)</div>
+<div class="hb"><span>Weekday</span><div><i style="width:${pc(wd,td)}%"></i></div><em>${cp(sd*1000)} (${pc(sd,ts)}%)</em></div><div class="hb"><span>Weekend</span><div><i style="width:${pc(we,td)}%;background:var(--ac)"></i></div><em>${cp(se*1000)} (${pc(se,ts)}%)</em></div>
+<div style="color:var(--mu);font-size:11.5px">Bar = proporsi hari belanja · angka = nilai belanja (% dari total)</div>
+<div class="vc" style="height:80px;margin-top:8px">${w.slice(4,11).map((v,i)=>`<div title="${DY[i]}: ${v} hari"><span>${v}</span><i style="height:${v/dm*70}%;background:${i>4?"var(--ac)":"var(--ac2)"}"></i><span>${DY[i]}</span></div>`).join("")}</div></div>`}
+function summary(){const B=BASE,T=B.length,dn=B.filter(fd).length,pr=B.filter(r=>r[4]),wp=B.filter(r=>r[5]>=0),pc=(a,b)=>b?Math.round(a/b*100):0,f=[$("fp").value,$("fz").value,$("fk").value,$("fs").value,$("q").value];
+CHS=[["Semua",()=>!f[0]&&!f[1]&&!f[2]&&!f[3]&&!f[4],()=>{["fp","fz","fk","fs"].forEach(i=>$(i).value="");$("q").value=""}],["Pareto belum difollowup",()=>f[2]==="1"&&f[3]==="0",()=>{$("fk").value="1";$("fs").value="0"}],["Belum difollowup",()=>f[3]==="0"&&f[2]==="",()=>{$("fk").value="";$("fs").value="0"}],["Sudah difollowup",()=>f[3]==="1",()=>{$("fs").value="1"}],["Belum ada PIC",()=>f[0]==="-2",()=>{$("fp").value="-2"}]];
+$("ch").innerHTML=CHS.map((c,i)=>`<button class="chip ${c[1]()?"on":""}" data-c="${i}">${c[0]}</button>`).join("");
+const row=(l,a,b)=>`<div class="pr"><span>${l}</span><div class="pb"><i style="width:${pc(a,b)}%"></i></div><em>${N.format(a)} / ${N.format(b)} (${pc(a,b)}%)</em></div>`;
+const zm=new Map();B.forEach(r=>zm.set(r[6],(zm.get(r[6])||0)+r[3]));const zl=[...zm].sort((a,b)=>b[1]-a[1]).slice(0,8),zx=Math.max(...zl.map(x=>x[1]),1);
+const g=new Map();B.forEach(r=>{let e=g.get(r[5]);if(!e){e={k:r[5],n:0,par:0,pd:0,s:0,d:0};g.set(r[5],e)}e.n++;e.s+=r[3];if(fd(r)){e.d++;if(r[4])e.pd++}if(r[4])e.par++});
+let L=[...g.values()];L.sort(RS==="s"?(a,b)=>b.s-a.s:RS==="lo"?(a,b)=>pc(a.d,a.n)-pc(b.d,b.n):(a,b)=>(b.par-b.pd)-(a.par-a.pd));const tot=L.length;if(!SHALL)L=L.slice(0,10);
+$("sm").innerHTML=`<div class="cd"><h3>Progres follow-up</h3>${row("Semua member",dn,T)}${row("Member Pareto",pr.filter(fd).length,pr.length)}${row("Member punya PIC",wp.filter(fd).length,wp.length)}<small style="color:var(--mu)">Mengikuti filter di bawah, kecuali filter PIC.</small></div>
+<div class="cd"><h3>Sales YTD per Zone <small style="color:var(--mu)">(klik untuk filter)</small></h3>${zl.map(x=>`<div class="hb zb ${$("fz").value===x[0]?"on":""}" data-z="${esc(x[0])}"><span>${x[0]==="-"?"Tanpa Zone":"Zone "+esc(x[0])}</span><div><i style="width:${Math.max(0,x[1])/zx*100}%"></i></div><em>${cp(x[1])}</em></div>`).join("")}</div>
+<div class="cd wide"><h3 style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px"><span>Rekap per PIC <small style="color:var(--mu)">(klik baris untuk filter)</small></span> <select id="rs"><option value="pb" ${RS==="pb"?"selected":""}>Urut: Pareto belum difollowup</option><option value="lo" ${RS==="lo"?"selected":""}>Urut: progres follow-up terendah</option><option value="s" ${RS==="s"?"selected":""}>Urut: Sales YTD</option></select></h3>
+<div class="tw"><table class="rk"><thead><tr><th>PIC Salper</th><th class="n">Member</th><th class="n">Pareto</th><th class="n">Pareto belum</th><th class="n">Sales YTD</th><th>Progres follow-up</th></tr></thead><tbody>${L.map(e=>`<tr class="zr" data-p="${e.k<0?-2:e.k}"><td data-label="PIC">${e.k<0?"Belum ada PIC":esc(S[e.k][1])}</td><td class="n" data-label="Member">${N.format(e.n)}</td><td class="n" data-label="Pareto">${e.par}</td><td class="n" data-label="Pareto belum difollowup" style="${e.par-e.pd?"color:var(--ac);font-weight:600":""}">${e.par-e.pd}</td><td class="n" data-label="Sales YTD">${cp(e.s)}</td><td data-label="Progres"><div class="pr" style="grid-template-columns:1fr 60px;margin:0"><div class="pb"><i style="width:${pc(e.d,e.n)}%"></i></div><em>${pc(e.d,e.n)}%</em></div></td></tr>`).join("")}</tbody></table></div>${tot>10?`<button id="rmore" style="margin-top:8px">${SHALL?"Tampilkan 10 teratas":"Tampilkan semua ("+tot+" PIC)"}</button>`:""}</div>`}
+$("ch").onclick=e=>{const b=e.target.closest(".chip");if(b){CHS[b.dataset.c][2]();filt()}};
+$("sm").onclick=e=>{const z=e.target.closest(".zb"),p=e.target.closest(".zr");if(z){$("fz").value=$("fz").value===z.dataset.z?"":z.dataset.z;filt()}else if(p){$("fp").value=$("fp").value===p.dataset.p?"":p.dataset.p;filt()}else if(e.target.id==="rmore"){SHALL=!SHALL;summary()}};
+$("sm").onchange=e=>{if(e.target.id==="rs"){RS=e.target.value;summary()}};
+function bars(a,lab){const m=Math.max(...a,1);return `<div class="vc">${a.map((v,i)=>`<div title="${lab[i]}: ${N.format(v)}"><span>${v>=1e6?(v/1e6).toFixed(0)+"jt":N.format(v)}</span><i style="height:${Math.max(0,v)/m*85}%"></i><span>${lab[i]}</span></div>`).join("")}</div>`}
+function detail(r){const p=pic(r),cm=Math.max(...r[7],1),cs=CAT.map((c,i)=>[c,r[7][i]]).sort((a,b)=>b[1]-a[1]);
+$("md").innerHTML=`<div class="hd"><div><h2>${esc(r[1])}</h2><span style="color:var(--mu)">No Member ${r[0]}</span></div><button id="cl">✕ Tutup</button></div>
+<div class="g"><div><small>PIC Salper ID</small>${p[0]}</div><div><small>PIC Salper Name</small>${esc(p[1])}</div><div><small>No Member</small>${r[0]}</div><div><small>Nama Customer</small>${esc(r[1])}</div><div><small>Phone No WA</small><a class="wa" target="_blank" rel="noopener" href="${wa(r[2])}">${r[2]}</a></div><div><small>Sales YTD</small>${rp(r[3])}</div><div><small>Ket Pareto</small><span class="tag p${r[4]}">${r[4]?"Pareto":"No"}</span></div><div><small>Terakhir belanja</small>${lastBuy(r)}</div></div>
+<div class="act"><div><a class="wb" target="_blank" rel="noopener" href="${wa(r[2])}">Chat via WhatsApp</a> <span id="fus"></span></div>${top5(r)}</div>
+<div class="w2">${fn5(r)}${habit(r)}</div>
+<div class="cd"><h3>Value berbelanja per category</h3>${cs.map(c=>`<div class="hb"><span>${c[0]}</span><div><i style="width:${Math.max(0,c[1])/cm*100}%"></i></div><em>${cp(c[1])}</em></div>`).join("")}</div>
+<div class="w2"><div class="cd"><h3>Frequency visit by month</h3>${bars(r[8],BLN)}</div><div class="cd"><h3>Transaction by month (Rp)</h3>${bars(r[9],BLN)}</div></div>`;
+cur=r;updFU();$("ov").classList.add("on");$("cl").onclick=()=>$("ov").classList.remove("on")}
+$("tb").onclick=e=>{const b=e.target.closest(".fu");if(b){tog(+b.dataset.m);return}const tr=e.target.closest("tr");if(!tr||e.target.closest("a"))return;detail(R[tr.dataset.i])};
+$("th").onclick=e=>{const i=+e.target.dataset.i;if(isNaN(i))return;sd=sk==i?-sd:(COLS[i][2]?-1:1);sk=i;filt()};
+$("ov").onclick=e=>{const b=e.target.closest(".fu");if(b){tog(+b.dataset.m);return}if(e.target.id=="ov")$("ov").classList.remove("on")};
+document.onkeydown=e=>{if(e.key=="Escape")$("ov").classList.remove("on")};
+["q","fp","fz","fk","fs"].forEach(i=>$(i).oninput=filt);
+$("pv").onclick=()=>{pg--;draw()};$("nx").onclick=()=>{pg++;draw()};
+const UPD=D.u;
+const LU=UPD[0],tgl=s=>new Date(s+"T00:00:00").toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"});
+$("lu").innerHTML=`Periode ${LU.per} · <b>Data terakhir diperbarui: ${tgl(LU.at)}</b> · <a href="#" id="hl" style="color:var(--ac2)">Riwayat update</a><br>Klik No Member untuk detail · klik No WA untuk buka WhatsApp`;
+$("hl").onclick=e=>{e.preventDefault();$("md").innerHTML=`<div class="hd"><h2>Riwayat update data</h2><button id="cl">✕ Tutup</button></div><div class="tw" style="margin-top:12px"><table style="min-width:0"><thead><tr><th>Tanggal update</th><th>Periode</th><th>File sumber</th><th class="n">Member</th><th class="n">Ada PIC</th><th class="n">Pareto</th><th class="n">Total Sales</th><th>Oleh</th></tr></thead><tbody>${UPD.map(u=>`<tr style="cursor:default"><td>${tgl(u.at)}</td><td>${u.per}</td><td>${esc(u.file)}</td><td class="n">${N.format(u.n)}</td><td class="n">${N.format(u.pic)}</td><td class="n">${N.format(u.par)}</td><td class="n">${rp(u.sales)}</td><td data-u="${esc(u.by||"")}">–</td></tr>`).join("")}</tbody></table></div><p style="color:var(--mu);font-size:12px">Status follow-up tersimpan terpisah dan tidak hilang saat data diperbarui.</p>`;$("ov").classList.add("on");$("cl").onclick=()=>$("ov").classList.remove("on");fillBy()};
+function fillBy(){document.querySelectorAll("td[data-u]").forEach(td=>{const n=nameOf(td.dataset.u);if(n)td.textContent=n})}
+function refresh(){const p=pg;filt();pg=p;draw()}
+async function updFU(){const r=cur;if(!r||!$("fus"))return;const e=FU["m"+r[0]],d=fd(r);let w="";
+if(d){const n=nameOf(e.u);w=`oleh ${esc(n||"manager")} · ${new Date(e.t).toLocaleString("id-ID")}`}
+if(cur!==r||!$("fus"))return;$("fus").innerHTML=`<button class="fu ${d?"on":""}" data-m="${r[10]}" ${canW?"":"disabled"}>${d?"✓ Sudah difollowup":canW?"Belum difollowup · tandai sudah":"Belum difollowup"}</button> <small style="color:var(--mu)">${w}</small>`}
+function tog(i){if(!canW)return;const r=R[i],k="m"+r[0],pv=FU[k],v={s:fd(r)?0:1,t:Date.now(),u:uid};FU[k]=v;refresh();updFU();
+wq=wq.then(async()=>{const {error}=await SB.rpc("set_fu",{p_b:bk(r[0]),p_k:k,p_v:v});if(error)throw error}).catch(()=>{if(pv)FU[k]=pv;else delete FU[k];refresh();updFU();alert("Gagal menyimpan status. Coba lagi.")})}
+
+/*MK*/
+function mk(A){
+const H=(A[1]||[]).map(x=>x==null?"":String(x).trim()),ix=n=>{const i=H.indexOf(n);if(i<0)throw new Error("Kolom '"+n+"' tidak ditemukan di baris header (baris ke-2)");return i};
+const iNo=ix("Member No"),iNm=ix("Member Name"),iPh=ix("Phone"),iS=ix("Sales Exclude"),iP=ix("Is Pareto"),iY=ix("YTD"),iSI=ix("Salper ID"),iSN=ix("Salper Name"),iZ=ix("Zone");
+const cc=[];for(let i=iP+1;i<iY;i++)cc.push(i);if(!cc.length)throw new Error("Kolom category tidak ditemukan");
+const cn=cc.map(i=>H[i].toLowerCase().replace(/ and /g," & ").replace(/\b\w/g,c=>c.toUpperCase()));
+const nm=iSI-iY-1;if(nm<2||nm%2)throw new Error("Kolom bulan (frequency/transaction) tidak sesuai format");const M=nm/2;
+const rows=[];for(let k=2;k<A.length;k++){const r=A[k];if(!r||r[iNo]==null||r[iNo]==="")continue;rows.push(r)}
+if(rows.length<100)throw new Error("Data terlalu sedikit ("+rows.length+" baris). Pastikan sheet pertama berisi data member.");
+const cached=rows.slice(0,200).some(r=>typeof r[iP]==="string");
+const tot=rows.reduce((a,r)=>a+(+r[iS]||0),0);let cum=0;
+const sid=[...new Map(rows.filter(r=>r[iSI]!=null&&String(r[iSI]).trim()!==""&&String(r[iSI]).trim()!=="-").map(r=>[String(r[iSI]).trim(),String(r[iSN]??"").trim()])).entries()].sort((a,b)=>a[1]<b[1]?-1:a[1]>b[1]?1:0);
+const mi=new Map(sid.map((x,i)=>[x[0],i]));let sum=0;
+const out=rows.map(r=>{const s=+r[iS]||0;cum+=s/tot;let ph=String(r[iPh]??"").replace(/\D/g,"");if(ph.slice(0,2)!=="62")ph="62"+ph.replace(/^0+/,"");
+const par=cached?(r[iP]==="Pareto"?1:0):(cum<0.8000001?1:0),si=String(r[iSI]??"").trim(),v=Math.round(s);sum+=v;
+return [String(r[iNo]),String(r[iNm]??"").trim(),ph,v,par,mi.has(si)?mi.get(si):-1,String(r[iZ]??""),cc.map(i=>Math.round(+r[i]||0)),Array.from({length:M},(_,j)=>Math.round(+r[iY+1+j]||0)),Array.from({length:M},(_,j)=>Math.round(+r[iY+1+M+j]||0))]});
+let me=M;while(me>1&&out.every(r=>!r[8][me-1]&&!r[9][me-1]))me--;if(me<M)out.forEach(r=>{r[8]=r[8].slice(0,me);r[9]=r[9].slice(0,me)});
+const per=String(A[0]?.[0]??"").replace(/^periode\s*/i,"").replace(/\s*-\s*/g,"\u2013").trim();
+return {s:sid.map(x=>[x[0],x[1]]),r:out,c:cn,per,tot:sum}}
+/*END*/
+/*MK2*/
+function mkItems(B,keys){const H=(B[0]||[]).map(x=>x==null?"":String(x).trim()),ix=n=>{const i=H.indexOf(n);if(i<0)throw new Error("Kolom '"+n+"' tidak ditemukan di sheet By Item");return i};
+const iM=ix("Member No"),iC=ix("Item Code"),iN=ix("Item Name"),iQ=ix("Base Sales Qty"),iS=ix("Sales Exclude Tax POS"),iF=H.indexOf("Item Function");const ks=new Set(keys),g=new Map(),fm=new Map();
+for(let k=1;k<B.length;k++){const r=B[k];if(!r||r[iM]==null)continue;const m=String(r[iM]).trim();if(!ks.has(m))continue;const s=+r[iS]||0;if(s<=0)continue;let e=g.get(m);if(!e){e=[];g.set(m,e)}e.push([String(r[iC]??"").trim(),String(r[iN]??"").trim(),Math.round(+r[iQ]||0),Math.round(s)]);
+if(iF>=0){const f=String(r[iF]??"").trim()||"-";let h=fm.get(m);if(!h){h=new Map();fm.set(m,h)}h.set(f,(h.get(f)||0)+s)}}
+const mp=new Map(),I=[],fx=new Map(),FL=[];const T=keys.map(m=>{const e=g.get(m);if(!e)return[];e.sort((a,b)=>b[3]-a[3]);return e.slice(0,5).map(x=>{const key=x[0]+"|"+x[1];let i=mp.get(key);if(i==null){i=I.length;mp.set(key,i);I.push([x[0],x[1]])}return[i,x[2],x[3]]})});
+const G=keys.map(m=>{const h=fm.get(m);if(!h)return[];return [...h.entries()].sort((a,b)=>b[1]-a[1]).slice(0,5).map(x=>{let i=fx.get(x[0]);if(i==null){i=FL.length;fx.set(x[0],i);FL.push(x[0])}return[i,Math.round(x[1])]})});
+return {i:I,t:T,f:FL,g:G,n:g.size,nf:iF>=0}}
+/*END2*/
+/*MK3*/
+function mkDay(C,keys){const H=(C[0]||[]).map(x=>x==null?"":String(x).trim()),ix=n=>{const i=H.indexOf(n);if(i<0)throw new Error("Kolom '"+n+"' tidak ditemukan di sheet Day");return i};
+const iM=ix("Member_No"),iY=ix("Year"),iMo=ix("Month"),iD=ix("Date"),iS=ix("Total Sales"),iN=ix("Day Name"),iL=H.findIndex(h=>/^customer shopping/i.test(h));
+const DN={monday:0,tuesday:1,wednesday:2,thursday:3,friday:4,saturday:5,sunday:6},ks=new Set(keys),g=new Map();
+for(let k=1;k<C.length;k++){const r=C[k];if(!r||r[iM]==null)continue;const m=String(r[iM]).trim();if(!ks.has(m))continue;let e=g.get(m);if(!e){e={s:new Set(),l:0,a:[0,0,0,0,0,0,0,0,0,0,0]};g.set(m,e)}
+const key=r[iY]+"-"+r[iMo]+"-"+r[iD],dup=e.s.has(key);e.s.add(key);const dv=(+r[iY])*10000+(+r[iMo])*100+(+r[iD]);if(dv>e.l)e.l=dv;const d=DN[String(r[iN]??"").trim().toLowerCase()],lb=iL>=0&&typeof r[iL]==="string"?r[iL].trim().toUpperCase():null,we=lb?lb==="WEEKEND":d>=5;
+if(!dup){e.a[we?1:0]++;if(d!=null)e.a[4+d]++}e.a[we?3:2]+=+r[iS]||0}
+return {w:keys.map(m=>{const e=g.get(m);if(!e)return[];const a=e.a;return[a[0],a[1],Math.round(a[2]/1000),Math.round(a[3]/1000),...a.slice(4),e.l]}),n:g.size}}
+/*END3*/
+let PEND=null;
+const modal=h=>{$("md").innerHTML=h;$("ov").classList.add("on");const c=$("cl");if(c)c.onclick=()=>$("ov").classList.remove("on")};
+function loadX(){return window.XLSX?Promise.resolve():new Promise((ok,no)=>{const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js";s.onload=ok;s.onerror=()=>no(new Error("Gagal memuat pustaka pembaca Excel. Periksa koneksi internet."));document.head.appendChild(s)})}
+function rdOld(buf,dense){const wb=XLSX.read(new Uint8Array(buf),{type:"array",sheets:[0,1],dense,cellFormula:false,cellStyles:false,cellHTML:false,cellNF:false});const sj=n=>XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:null});return [sj(wb.SheetNames[0]),wb.SheetNames[1]?sj(wb.SheetNames[1]):null]}
+let CAN=ROLE==="editor",WHY="Akun Anda tidak punya peran Editor. Upload data hanya bisa dilakukan Editor; minta admin mengubah peran Anda di tabel tim Supabase.";function rd(buf,dense){const wb=XLSX.read(new Uint8Array(buf),{type:"array",sheets:[0,1,2],dense,cellFormula:false,cellStyles:false,cellHTML:false,cellNF:false});const nm=wb.SheetNames.filter(n=>wb.Sheets[n]),f=re=>nm.find(n=>re.test(n)),sj=n=>n?XLSX.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:null}):null;return [sj(nm[0]),sj(f(/by\s*item/i)||nm[1]),sj(f(/^day$/i)||nm[2])]}
+$("up").onclick=()=>{if(!CAN){modal('<div class="hd"><h2>Upload belum tersedia</h2><button id="cl">✕ Tutup</button></div><p>'+WHY+'</p>');return}$("fi").click()};
+$("fi").onchange=async e=>{const f=e.target.files[0];e.target.value="";if(!f)return;
+if(/\.json(\.gz)?$/i.test(f.name)){try{const X=JSON.parse(/\.gz$/i.test(f.name)?await gunzipText(f):await f.text());if(!X||!Array.isArray(X.r)||!Array.isArray(X.s)||!Array.isArray(X.u))throw new Error("Format file data tidak dikenali.");PEND={X,f:f.name,raw:1};modal(`<div class="hd"><h2>Impor data awal</h2><button id="cl">\u2715 Tutup</button></div><div class="g"><div><small>File</small>${esc(f.name)}</div><div><small>Periode</small><b>${esc(X.u[0]?.per||"?")}</b></div><div><small>Member</small><b>${N.format(X.r.length)}</b></div></div><p style="color:var(--mu);font-size:12.5px">Data ini akan menjadi data untuk semua pengguna.</p><button id="ap" class="wb" style="border:0;cursor:pointer">Terapkan & publikasikan</button>`);$("ap").onclick=apply}catch(x){modal(`<div class="hd"><h2>Gagal membaca file</h2><button id="cl">\u2715 Tutup</button></div><p>${esc(x.message||x)}</p>`)}return}
+modal(`<div class="hd"><h2>Memproses ${esc(f.name)}\u2026</h2></div><p>Membaca file Excel, bisa 30\u201390 detik untuk file besar. Jangan tutup halaman. Disarankan memakai laptop.</p>`);
+await new Promise(r=>setTimeout(r,60));
+try{await loadX();const buf=await f.arrayBuffer();let W=rd(buf,true);if(W[0].length<10)W=rd(buf,false);const X=mk(W[0]);let IT={i:[],t:X.r.map(()=>[]),f:[],g:X.r.map(()=>[]),n:0},noIt=!W[1];if(W[1]){try{IT=mkItems(W[1],X.r.map(r=>r[0]))}catch(z){noIt=z.message}}X.i=IT.i;X.t=IT.t;X.f=IT.f;X.g=IT.g;let DY={w:X.r.map(()=>[]),n:0},noDy=!W[2];if(W[2]){try{DY=mkDay(W[2],X.r.map(r=>r[0]))}catch(z){noDy=z.message}}X.w=DY.w;PEND={X,f:f.name};
+const old=new Set(R.map(r=>r[0])),nw=X.r.filter(r=>!old.has(r[0])).length,sm=R.reduce((a,r)=>a+r[3],0),mo=X.r[0]?X.r[0][8].length:0;
+const warn=[];if(X.per&&X.per===LU.per)warn.push("Periode sama dengan data saat ini ("+esc(LU.per)+").");if(X.r.length<R.length*0.8)warn.push("Jumlah member turun lebih dari 20% dibanding data saat ini.");if(X.per===""||mo===0)warn.push("Periode/bulan tidak terbaca dari file.");if(noDy)warn.push("Sheet \u201cDay\u201d tidak terbaca ("+esc(noDy===true?"tidak ditemukan":noDy)+"). Info weekday/weekend akan kosong.");if(!noIt&&!IT.f.length)warn.push("Kolom \u201cItem Function\u201d tidak ditemukan. 5 Pareto by Function akan kosong.");if(noIt)warn.push("Sheet \u201cBy Item\u201d tidak terbaca ("+esc(noIt===true?"tidak ditemukan":noIt)+"). 5 Item Pareto akan kosong.");
+modal(`<div class="hd"><h2>Cek data sebelum diterapkan</h2><button id="cl">\u2715 Tutup</button></div>
+<div class="g"><div><small>File</small>${esc(f.name)}</div><div><small>Periode</small>${esc(LU.per)} \u2192 <b>${esc(X.per||"?")}</b></div><div><small>Member</small>${N.format(R.length)} \u2192 <b>${N.format(X.r.length)}</b> (${N.format(nw)} baru)</div><div><small>Total Sales</small>${cp(sm)} \u2192 <b>${cp(X.tot)}</b></div><div><small>Ada PIC</small><b>${N.format(X.r.filter(r=>r[5]>=0).length)}</b></div><div><small>Pareto</small><b>${N.format(X.r.filter(r=>r[4]).length)}</b></div><div><small>Jumlah bulan</small><b>${mo}</b></div><div><small>Member dgn data item</small><b>${N.format(IT.n)}</b></div><div><small>Member dgn data hari belanja</small><b>${N.format(DY.n)}</b></div></div>
+${warn.map(w=>`<p style="color:var(--ac)">\u26a0 ${w}</p>`).join("")}<p style="color:var(--mu);font-size:12.5px">Data lama akan diganti untuk semua pengguna. Status follow-up tetap tersimpan.</p><button id="ap" class="wb" style="border:0;cursor:pointer">Terapkan & publikasikan</button>`);
+$("ap").onclick=apply}catch(x){modal(`<div class="hd"><h2>Gagal membaca file</h2><button id="cl">\u2715 Tutup</button></div><p>${esc(x.message||x)}</p>`)}};
+async function apply(){const P=PEND;if(!P)return;$("ap").disabled=true;$("ap").textContent="Menyimpan\u2026 mohon tunggu";
+const d=new Date(),at=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const e={at,per:P.X.per,file:P.f,n:P.X.r.length,pic:P.X.r.filter(r=>r[5]>=0).length,par:P.X.r.filter(r=>r[4]).length,sales:P.X.tot,by:uid};
+try{const D2=P.raw?P.X:{s:P.X.s,r:P.X.r,c:P.X.c,i:P.X.i,t:P.X.t,f:P.X.f,g:P.X.g,w:P.X.w,u:[e,...UPD.filter(u=>u.n)].slice(0,36)};await saveData(D2);modal("<h2>Berhasil</h2><p>Data diperbarui untuk semua pengguna. Halaman dimuat ulang\u2026</p>");setTimeout(()=>location.reload(),1200)}
+catch(x){const m={"403":"Akun Anda tidak punya izin Editor untuk memperbarui data.",not_writer:"Akun Anda tidak punya izin edit untuk memperbarui data. Minta akses Editor.",not_granted:"Akun Anda tidak punya izin edit untuk memperbarui data. Minta akses Editor.",too_large:"Ukuran data melebihi batas halaman.",conflict:"Ada pembaruan lain yang bersamaan. Halaman akan dimuat ulang; ulangi upload jika perlu.",rate_limited:"Terlalu sering menyimpan. Coba lagi beberapa saat."}[x&&x.code]||"Gagal menyimpan ("+esc((x&&(x.message||x.code||x.statusCode))||"error")+"). Coba lagi.";
+modal(`<div class="hd"><h2>Gagal menerapkan</h2><button id="cl">\u2715 Tutup</button></div><p>${m}</p>`)}}
+filt();
+if(!canW){$("nt").hidden=false;$("nt").textContent="Mode lihat saja: status follow-up hanya bisa diubah user dengan peran Contributor atau Editor."}
+if(!R.length){$("nt").hidden=false;$("nt").textContent=CAN?"Belum ada data. Klik \u201c\u2b06 Upload data\u201d lalu pilih file data awal (dashboard.json.gz) atau file Excel QBig.":"Belum ada data. Minta Editor mengupload data."}
+const mergeFU=x=>{let ch=0;for(const k in x)if(!FU[k]||(x[k].t||0)>=(FU[k].t||0)){FU[k]=x[k];ch=1}return ch};
+SB.from("fu").select("data").then(({data,error})=>{if(error)return;(data||[]).forEach(d=>mergeFU(d.data||{}));refresh();updFU()});
+SB.channel("fu").on("postgres_changes",{event:"*",schema:"public",table:"fu"},p=>{if(p.new&&mergeFU(p.new.data||{})){refresh();updFU()}}).subscribe();
+}
+
+/* ===== Lapisan login & data (Supabase) ===== */
+let SB=null,ME=null,ROLE=null,NAMES={};
+const nameOf=u=>u?(NAMES[String(u).toLowerCase()]||(String(u).includes("@")?u:"")):"";
+const gate=document.getElementById("gate"),gmsg=t=>{document.getElementById("gm").textContent=t};
+const showGate=(form,msg)=>{gate.hidden=false;document.getElementById("root").hidden=true;document.getElementById("lf").hidden=!form;gmsg(msg||"")};
+async function gunzipText(blob){const st=blob.stream().pipeThrough(new DecompressionStream("gzip"));return await new Response(st).text()}
+async function gzipBlob(text){const st=new Blob([text]).stream().pipeThrough(new CompressionStream("gzip"));return await new Response(st).blob()}
+async function saveData(D2){const b=await gzipBlob(JSON.stringify(D2));const {error}=await SB.storage.from("data").upload(DATA_FILE,b,{upsert:true,contentType:"application/octet-stream",cacheControl:"0"});if(error)throw error}
+const DATA_FILE="dashboard.json.gz";
+function emptyData(){const d=new Date(),at=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");return {s:[],r:[],c:[],i:[],t:[],f:[],g:[],w:[],u:[{at,per:"–",file:"–",n:0,pic:0,par:0,sales:0}]}}
+async function start(){
+  const C=window.CFG||{};
+  if(!C.SUPABASE_URL||!C.SUPABASE_ANON_KEY||!window.supabase){showGate(false,"Dashboard belum dikonfigurasi. Isi SUPABASE_URL dan SUPABASE_ANON_KEY di file config.js (lihat README).");return}
+  SB=window.supabase.createClient(C.SUPABASE_URL,C.SUPABASE_ANON_KEY);
+  const {data:{session}}=await SB.auth.getSession();
+  if(!session){showGate(true,"");return}
+  ME={email:String(session.user.email||"").toLowerCase()};
+  showGate(false,"Memeriksa akses…");
+  const {data:tim,error:te}=await SB.from("tim").select("email,nama,peran");
+  if(te){showGate(false,"Gagal memeriksa akses: "+te.message);return}
+  (tim||[]).forEach(t=>{NAMES[String(t.email).toLowerCase()]=t.nama||t.email});
+  ROLE=((tim||[]).find(t=>String(t.email).toLowerCase()===ME.email)||{}).peran||null;
+  if(!ROLE){showGate(false,"Email "+ME.email+" belum terdaftar di tim dashboard. Minta admin menambahkannya.");document.getElementById("lo2").hidden=false;return}
+  gmsg("Memuat data member… (±4 MB, tunggu sebentar)");
+  let D;
+  const {data:blob,error:de}=await SB.storage.from("data").download(DATA_FILE);
+  if(de||!blob){D=emptyData()}else{try{D=JSON.parse(await gunzipText(blob))}catch(x){showGate(false,"Data rusak atau tidak bisa dibaca: "+x.message);return}}
+  gate.hidden=true;document.getElementById("root").hidden=false;
+  document.getElementById("who").innerHTML=ME.email+" · "+ROLE+' · <a href="#" id="lo">Keluar</a>';
+  document.getElementById("lo").onclick=async e=>{e.preventDefault();await SB.auth.signOut();location.reload()};
+  boot(D);
+}
+document.getElementById("lf").onsubmit=async e=>{e.preventDefault();const b=document.getElementById("lb");b.disabled=true;gmsg("Masuk…");
+  const {error}=await SB.auth.signInWithPassword({email:document.getElementById("le").value.trim(),password:document.getElementById("lp").value});
+  b.disabled=false;if(error){gmsg(error.message==="Invalid login credentials"?"Email atau password salah.":error.message);return}location.reload()};
+document.getElementById("lo2").onclick=async()=>{await SB.auth.signOut();location.reload()};
+start().catch(e=>showGate(false,"Terjadi kesalahan: "+(e&&e.message||e)));
+</script>
+</body></html>

@@ -1,0 +1,4 @@
+# Jangan pernah commit data member ke repo publik
+*.json.gz
+*.xlsx
+data-awal/
