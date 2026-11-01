@@ -139,9 +139,11 @@ $("hl").onclick=e=>{e.preventDefault();$("md").innerHTML=`<div class="hd"><h2>Ri
 function fillBy(){document.querySelectorAll("td[data-u]").forEach(td=>{const n=nameOf(td.dataset.u);if(n)td.textContent=n})}
 function refresh(){const p=pg;filt();pg=p;draw()}
 async function updFU(){const r=cur;if(!r||!$("fus"))return;const e=FU["m"+r[0]],d=fd(r);let w="";
-if(d){const n=nameOf(e.u);w=`oleh ${esc(n||"manager")} · ${new Date(e.t).toLocaleString("id-ID")}`}
+if(d){const n=e.n||nameOf(e.u);w=`oleh ${esc(n||"manager")} · ${new Date(e.t).toLocaleString("id-ID")}`}
 if(cur!==r||!$("fus"))return;$("fus").innerHTML=`<button class="fu ${d?"on":""}" data-m="${r[10]}" ${canW?"":"disabled"}>${d?"✓ Sudah difollowup":canW?"Belum difollowup · tandai sudah":"Belum difollowup"}</button> <small style="color:var(--mu)">${w}</small>`}
-function tog(i){if(!canW)return;const r=R[i],k="m"+r[0],pv=FU[k],v={s:fd(r)?0:1,t:Date.now(),u:uid};FU[k]=v;refresh();updFU();
+function askName(next){modal(`<div class="hd"><h2>Nama Anda</h2><button id="cl">\u2715 Tutup</button></div><p style="color:var(--mu)">Nama ini dicatat di setiap follow-up yang Anda centang.</p><form id="nf" style="display:flex;gap:8px;flex-wrap:wrap"><input id="nn" placeholder="Contoh: Andi Sharp (AP)" required value="${esc(myName())}"><button class="wb" style="border:0;cursor:pointer">Simpan</button></form>`);$("nn").focus();$("nf").onsubmit=e=>{e.preventDefault();const v=$("nn").value.trim();if(!v)return;setName(v);$("ov").classList.remove("on");whoLine();if(next)next()}}
+window.askName=askName;
+function tog(i){if(!canW)return;if(SHARED&&!myName()){askName(()=>tog(i));return}const r=R[i],k="m"+r[0],pv=FU[k],v={s:fd(r)?0:1,t:Date.now(),u:uid};if(SHARED)v.n=myName();FU[k]=v;refresh();updFU();
 wq=wq.then(async()=>{const {error}=await SB.rpc("set_fu",{p_b:bk(r[0]),p_k:k,p_v:v});if(error)throw error}).catch(()=>{if(pv)FU[k]=pv;else delete FU[k];refresh();updFU();alert("Gagal menyimpan status. Coba lagi.")})}
 
 /*MK*/
@@ -214,7 +216,10 @@ SB.channel("fu").on("postgres_changes",{event:"*",schema:"public",table:"fu"},p=
 }
 
 /* ===== Lapisan login & data (Supabase) ===== */
-let SB=null,ME=null,ROLE=null,NAMES={};
+let SB=null,ME=null,ROLE=null,NAMES={},SHARED=false;
+const myName=()=>{try{return localStorage.getItem("fu_nama")||window.__nm||""}catch(e){return window.__nm||""}};
+const setName=v=>{window.__nm=v;try{localStorage.setItem("fu_nama",v)}catch(e){}};
+function whoLine(){const w=document.getElementById("who");if(SHARED){w.innerHTML="Nama: <b>"+(myName()?myName().replace(/[&<>"]/g,""):"belum diisi")+'</b> · <a href="#" id="gn">ganti</a>';document.getElementById("gn").onclick=e=>{e.preventDefault();window.askName()}}else{w.innerHTML=ME.email+" · "+ROLE+' · <a href="#" id="lo">Keluar</a>';document.getElementById("lo").onclick=async e=>{e.preventDefault();await SB.auth.signOut();location.reload()}}}
 const nameOf=u=>u?(NAMES[String(u).toLowerCase()]||(String(u).includes("@")?u:"")):"";
 const gate=document.getElementById("gate"),gmsg=t=>{document.getElementById("gm").textContent=t};
 const showGate=(form,msg)=>{gate.hidden=false;document.getElementById("root").hidden=true;document.getElementById("lf").hidden=!form;gmsg(msg||"")};
@@ -249,9 +254,8 @@ async function start(){
   const {data:blob,error:de}=await SB.storage.from("data").download(DATA_FILE);
   if(de||!blob){D=emptyData()}else{try{D=JSON.parse(await gunzipText(blob))}catch(x){showGate(false,"Data rusak atau tidak bisa dibaca: "+x.message);return}}
   gate.hidden=true;document.getElementById("root").hidden=false;
-  document.getElementById("who").innerHTML=ME.email+" · "+ROLE+' · <a href="#" id="lo">Keluar</a>';
-  document.getElementById("lo").onclick=async e=>{e.preventDefault();await SB.auth.signOut();location.reload()};
-  boot(D);
+  SHARED=!!C.VIEWER_EMAIL&&ME.email===C.VIEWER_EMAIL.toLowerCase();
+  boot(D);whoLine();
 }
 document.getElementById("lf").onsubmit=async e=>{e.preventDefault();const b=document.getElementById("lb");b.disabled=true;gmsg("Masuk…");
   const {error}=await SB.auth.signInWithPassword({email:document.getElementById("le").value.trim(),password:document.getElementById("lp").value});
