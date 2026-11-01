@@ -219,7 +219,7 @@ SB.channel("fu").on("postgres_changes",{event:"*",schema:"public",table:"fu"},p=
 let SB=null,ME=null,ROLE=null,NAMES={},SHARED=false;
 const myName=()=>{try{return localStorage.getItem("fu_nama")||window.__nm||""}catch(e){return window.__nm||""}};
 const setName=v=>{window.__nm=v;try{localStorage.setItem("fu_nama",v)}catch(e){}};
-function whoLine(){const w=document.getElementById("who");if(SHARED){w.innerHTML="Nama: <b>"+(myName()?myName().replace(/[&<>"]/g,""):"belum diisi")+'</b> · <a href="#" id="gn">ganti</a>';document.getElementById("gn").onclick=e=>{e.preventDefault();window.askName()}}else{w.innerHTML=ME.email+" · "+ROLE+' · <a href="#" id="lo">Keluar</a>';document.getElementById("lo").onclick=async e=>{e.preventDefault();await SB.auth.signOut();location.reload()}}}
+function whoLine(){const w=document.getElementById("who");if(SHARED){w.innerHTML="Nama: <b>"+(myName()?myName().replace(/[&<>"]/g,""):"belum diisi")+'</b> · <a href="#" id="gn">ganti</a> · <a href="#" id="le2">Login editor</a>';document.getElementById("gn").onclick=e=>{e.preventDefault();window.askName()};document.getElementById("le2").onclick=async e=>{e.preventDefault();await SB.auth.signOut();location.replace(location.pathname)}}else{w.innerHTML=ME.email+" · "+ROLE+' · <a href="#" id="lo">Keluar</a>';document.getElementById("lo").onclick=async e=>{e.preventDefault();await SB.auth.signOut();location.reload()}}}
 const nameOf=u=>u?(NAMES[String(u).toLowerCase()]||(/^u_/.test(String(u))?"":u)):"";
 const gate=document.getElementById("gate"),gmsg=t=>{document.getElementById("gm").textContent=t};
 const showGate=(form,msg)=>{gate.hidden=false;document.getElementById("root").hidden=true;document.getElementById("lf").hidden=!form;gmsg(msg||"")};
