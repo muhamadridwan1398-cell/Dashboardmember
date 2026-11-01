@@ -44,3 +44,8 @@ Untuk mengubah peran atau mencabut akses, edit atau hapus barisnya di tabel `tim
 
 ## Update data bulanan
 Editor klik **⬆ Upload data** lalu pilih file Excel QBig (format sama seperti sebelumnya: sheet data member, *By Item*, *Day*). Status follow-up tidak hilang saat data diganti.
+
+## Link rahasia (lihat tanpa login)
+Orang yang membuka `https://muhamadridwan1398-cell.github.io/Dashboardmember/#v=PASSWORD_VIEWER` langsung masuk dalam mode lihat saja.
+- Akun bersamanya: `viewer.dashboard@example.com` (peran `viewer` di tabel `tim`).
+- **Mengganti link** (kalau bocor): Supabase → Authentication → Users → hapus `viewer.dashboard@example.com`, lalu buat lagi dengan password baru. Link lama berhenti berfungsi paling lama 1 jam kemudian.

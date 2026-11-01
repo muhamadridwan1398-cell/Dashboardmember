@@ -206,7 +206,7 @@ try{const D2=P.raw?P.X:{s:P.X.s,r:P.X.r,c:P.X.c,i:P.X.i,t:P.X.t,f:P.X.f,g:P.X.g,
 catch(x){const m={"403":"Akun Anda tidak punya izin Editor untuk memperbarui data.",not_writer:"Akun Anda tidak punya izin edit untuk memperbarui data. Minta akses Editor.",not_granted:"Akun Anda tidak punya izin edit untuk memperbarui data. Minta akses Editor.",too_large:"Ukuran data melebihi batas halaman.",conflict:"Ada pembaruan lain yang bersamaan. Halaman akan dimuat ulang; ulangi upload jika perlu.",rate_limited:"Terlalu sering menyimpan. Coba lagi beberapa saat."}[x&&x.code]||"Gagal menyimpan ("+esc((x&&(x.message||x.code||x.statusCode))||"error")+"). Coba lagi.";
 modal(`<div class="hd"><h2>Gagal menerapkan</h2><button id="cl">\u2715 Tutup</button></div><p>${m}</p>`)}}
 filt();
-if(!canW){$("nt").hidden=false;$("nt").textContent="Mode lihat saja: status follow-up hanya bisa diubah user dengan peran Contributor atau Editor."}
+if(!canW){$("nt").hidden=false;$("nt").textContent="Mode lihat saja: status follow-up hanya bisa diubah oleh editor."}
 if(!R.length){$("nt").hidden=false;$("nt").textContent=CAN?"Belum ada data. Klik \u201c\u2b06 Upload data\u201d lalu pilih file data awal (dashboard.json.gz) atau file Excel QBig.":"Belum ada data. Minta Editor mengupload data."}
 const mergeFU=x=>{let ch=0;for(const k in x)if(!FU[k]||(x[k].t||0)>=(FU[k].t||0)){FU[k]=x[k];ch=1}return ch};
 SB.from("fu").select("data").then(({data,error})=>{if(error)return;(data||[]).forEach(d=>mergeFU(d.data||{}));refresh();updFU()});
@@ -227,7 +227,15 @@ async function start(){
   const C=window.CFG||{};
   if(!C.SUPABASE_URL||!C.SUPABASE_ANON_KEY||!window.supabase){showGate(false,"Dashboard belum dikonfigurasi. Isi SUPABASE_URL dan SUPABASE_ANON_KEY di file config.js (lihat README).");return}
   SB=window.supabase.createClient(C.SUPABASE_URL,C.SUPABASE_ANON_KEY);
-  const {data:{session}}=await SB.auth.getSession();
+  const hv=new URLSearchParams(location.hash.slice(1)).get("v");
+  if(hv)history.replaceState(null,"",location.pathname+location.search);
+  let {data:{session}}=await SB.auth.getSession();
+  if(hv&&C.VIEWER_EMAIL&&(!session||String(session.user.email).toLowerCase()!==C.VIEWER_EMAIL.toLowerCase())){
+    showGate(false,"Membuka dashboard…");
+    if(session)await SB.auth.signOut();
+    const {data:li,error:le}=await SB.auth.signInWithPassword({email:C.VIEWER_EMAIL,password:hv});
+    if(le){showGate(false,"Link tidak berlaku lagi. Minta link terbaru ke pemilik dashboard.");return}
+    session=li.session}
   if(!session){showGate(true,"");return}
   ME={email:String(session.user.email||"").toLowerCase()};
   showGate(false,"Memeriksa akses…");

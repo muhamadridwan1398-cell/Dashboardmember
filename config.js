@@ -2,5 +2,7 @@
 // Publishable key AMAN ditaruh di repo publik; data tetap dilindungi login + Row Level Security.
 window.CFG = {
   SUPABASE_URL: "https://louifihhhvmzbphpxmvv.supabase.co",
-  SUPABASE_ANON_KEY: "sb_publishable_Ab2CORdFHG4yIz1LkjPUxw_Jtv06HBr"
+  SUPABASE_ANON_KEY: "sb_publishable_Ab2CORdFHG4yIz1LkjPUxw_Jtv06HBr",
+  // Akun bersama untuk "link rahasia" (mode lihat saja). Password-nya TIDAK disimpan di sini.
+  VIEWER_EMAIL: "viewer.dashboard@example.com"
 };
